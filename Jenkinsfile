@@ -10,13 +10,19 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-		sh 'git --version'
+                sh 'git --version'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-		sh 'java -version'
+                sh 'java -version'
+            }
+        }
+        stage('release') {
+            agent { label 'master' }
+            steps {
+               sh "printenv | sort"
             }
         }
     }
